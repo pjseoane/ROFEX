@@ -16,6 +16,7 @@ class CUser():
         self.level_ = "1"
         self.marketId_ = "ROFX"
         self.s = requests.Session()
+        self.loginSuccess=False
 
         self.login()
 
@@ -28,10 +29,11 @@ class CUser():
 
         if (loginResponse.ok):
             self.token = loginResponse.headers['X-Auth-Token']
-            success = True
+            self.loginSuccess = True
 
             print("login() OK --->", self.token)
         else:
             print("Request Error.")
-            success = False
-        return success
+            self.loginSuccess = False
+
+        return self.loginSuccess
