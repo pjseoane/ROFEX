@@ -62,8 +62,9 @@ class cSuscriptSymbol(cSetup.cEnvironment):
 
             if msgType == 'MD':
 
-                print("Pasa por msg MD: \n", self.messages[-1])
+                #print("Pasa por msg MD: \n", self.messages[-1])
                 #print("Last message :",self)
+                print("Mensajes :", self.mensajes)
                 self.incomingMD()
                 #self.goRobot()
 
@@ -86,7 +87,8 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         print("### connection closed ###")
 
     def on_open(ws):
-        print("WS Conection Open...")
+        pass
+        # print("WS Conection Open...")
 
 
     def buildMessage(self, sym):
@@ -120,7 +122,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         #print("Mensaje", self.msg, __name__)
         #self.md = []
         self.md.append([self.timestamp,self.sym,self.bid,self.bidSize,self.offer,self.offerSize])
-        print("MD Array :",self.md[:])
+        #print("MD Array :",self.md[:])
 
 
         return

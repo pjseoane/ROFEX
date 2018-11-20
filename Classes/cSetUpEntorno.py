@@ -36,7 +36,7 @@ class cEnvironment():
             self.token = loginResponse.headers['X-Auth-Token']
             self.loginSuccess = True
 
-            print("login() OK --->", self.token)
+            #print("login() OK --->", self.token)
         else:
             print("Request Error.",__name__)
             self.loginSuccess = False
