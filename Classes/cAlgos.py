@@ -9,8 +9,11 @@ class cRobot():
         self.goRobot()
 
     def goRobot(self):
-        print (self.s1.md[-1])
-        print (self.s2.md[-1])
+        print (self.s1.md[-1]," mensajes:", len(self.s1.md))
+        print (self.s2.md[-1],"mensajes :", len(self.s2.md))
+
+        robot = threading.Thread(target=self.goRobot).start()
+
         return
 
 
