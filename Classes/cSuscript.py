@@ -66,7 +66,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
                 #print("Last message :",self)
                 print("Mensajes :", self.mensajes)
                 self.incomingMD()
-                #self.goRobot()
+                self.goRobot()
 
 
             elif msgType == 'OR':
@@ -131,18 +131,8 @@ class cSuscriptSymbol(cSetup.cEnvironment):
 
         print("En goRobot**")
         print("Mensajes ", self.mensajes)
+        print(self.md[-1])
 
-        print("sym1")
-        print("Time stamp: ", self.sym1[0], "Symbol: ", self.sym1[1], " ", self.sym1[2], "/", self.sym1[3], " ",
-              self.sym1[4], "/", self.sym1[5])
-
-        print("sym2")
-        print("Time stamp: ", self.sym2[0], "Symbol: ", self.sym2[1], " ", self.sym2[2], "/", self.sym2[3], " ",
-              self.sym2[4], "/", self.sym2[5])
-
-        if (self.sym2[5] < 10):
-            # completa el vol hasta 10
-            print("offer < 5")
         return
 
 
