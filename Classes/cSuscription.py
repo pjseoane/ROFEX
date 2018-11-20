@@ -1,5 +1,5 @@
 import simplejson
-from Classes import cUser as usr
+from Classes import cSetUpEntorno as usr
 import websocket
 import threading
 from time import sleep
@@ -7,7 +7,7 @@ from time import sleep
 
 class cSuscription(usr.CUser):
     def __init__(self,usr,pswd,account,symbols):
-        super(). __init__(usr,pswd,account)
+        super().__init__(usr,pswd,account)
 
         self.symbols=symbols
         self.mensajes=0
@@ -51,18 +51,20 @@ class cSuscription(usr.CUser):
             print("Error al procesar mensaje recibido:--->>> " + message)
 
     def on_error(self, error):
-            print("Salio por error")
+            print("Salio por error",__name__)
             print(error)
             self.ws.close()
 
-    def on_close(ws):
+    def on_close(self,ws):
             print("### connection closed ###")
 
-    def on_open(ws):
+    def on_open(self,ws):
             print("WS Conection Open...")
 
     def runWS(self):
             headers = {'X-Auth-Token:{token}'.format(token=self.token)}
+            print("Antes de suscribir a ",self.activeWSEndpoint)
+
             self.ws = websocket.WebSocketApp(self.activeWSEndpoint,
                                              on_message=self.on_message,
                                              on_error=self.on_error,
