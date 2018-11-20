@@ -4,7 +4,7 @@ import threading
 import simplejson
 from time import sleep
 from Classes import cSetUpEntorno as cSetup
-
+#1
 
 class cSuscriptSymbol(cSetup.cEnvironment):
     def __init__(self,usr,pswd,account,symbols):
