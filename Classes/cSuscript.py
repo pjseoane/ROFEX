@@ -64,7 +64,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
 
                 #print("Pasa por msg MD: \n", self.messages[-1])
                 #print("Last message :",self)
-                print("Mensajes :", self.mensajes)
+                #print("Mensajes :", self.mensajes)
                 self.incomingMD()
                 self.goRobot()
 
@@ -122,16 +122,17 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         #print("Mensaje", self.msg, __name__)
         #self.md = []
         self.md.append([self.timestamp,self.sym,self.bid,self.bidSize,self.offer,self.offerSize])
-        print("MD Array :",self.md[:])
+        #print("MD Array :",self.md[-1])
 
 
         return
 
     def goRobot(self):
 
-        print("En goRobot**")
-        print("Mensajes ", self.mensajes)
-        print(self.md[-1])
+        print("En goRobot**->",self.mensajes,"--",self.sym,"-->",self.bid,"/",self.offer,"    ",self.bidSize,"/",self.offerSize)
+        #print("Mensajes ", self.mensajes)
+
+        #print(self.md[-1])
 
         return
 
