@@ -122,7 +122,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         #print("Mensaje", self.msg, __name__)
         #self.md = []
         self.md.append([self.timestamp,self.sym,self.bid,self.bidSize,self.offer,self.offerSize])
-        #print("MD Array :",self.md[:])
+        print("MD Array :",self.md[:])
 
 
         return
