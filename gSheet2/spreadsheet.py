@@ -20,4 +20,4 @@ sheet = client.open("Legislators 2017-a").sheet1
 list_of_hashes = sheet.get_all_records()
 print(list_of_hashes)
 
-sheet.update_cell(1, 1, "I just wrote to a spreadsheet using Python!")
+sheet.update_cell(2, 1, "I just wrote to a spreadsheet using Python!")

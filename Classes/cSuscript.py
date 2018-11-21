@@ -4,6 +4,11 @@ import threading
 import simplejson
 from time import sleep
 from Classes import cSetUpEntorno as cSetup
+#--------------------------
+# Imports for google sheets
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 #1
 
 class cSuscriptSymbol(cSetup.cEnvironment):
@@ -15,6 +20,8 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         self.messages = []
         self.md=[]
         self.mensajes = 0
+        filaGoogleSheets=3
+
 
         #if (self.loginSuccess):
         self.runWS()
@@ -119,9 +126,13 @@ class cSuscriptSymbol(cSetup.cEnvironment):
             self.offer = self.msg['marketData']['OF'][0]['price']
             self.offerSize = self.msg['marketData']['OF'][0]['size']
 
+        #for i in self.symbols:
+        #    if(self.sym==self.symbols[i]):
+
+
         #print("Mensaje", self.msg, __name__)
         #self.md = []
-        self.md.append([self.timestamp,self.sym,self.bid,self.bidSize,self.offer,self.offerSize])
+        self.md.append([self.timestamp,self.sym,self.bid,self.offer,self.bidSize,self.offerSize])
         #print("MD Array :",self.md[-1])
 
 
@@ -130,10 +141,31 @@ class cSuscriptSymbol(cSetup.cEnvironment):
     def goRobot(self):
 
         print("En goRobot**->",self.mensajes,"--",self.sym,"-->",self.bid,"/",self.offer,"    ",self.bidSize,"/",self.offerSize)
-        #print("Mensajes ", self.mensajes)
-
-        #print(self.md[-1])
-
+        self.printToGoogleSheets()
         return
 
+    def printToGoogleSheets(self):
+        # use creds to create a client to interact with the Google Drive API
+        scope = ['https://spreadsheets.google.com/feeds',
+                 'https://www.googleapis.com/auth/drive']
+        creds = ServiceAccountCredentials.from_json_keyfile_name('Notebooks\client_secret.json', scope)
+        client = gspread.authorize(creds)
 
+        # Find a workbook by name and open the first sheet
+        # Make sure you use the right name here.
+
+        sheet = client.open("ROFEX-API").sheet1
+
+        # Extract and print all of the values
+        # list_of_hashes = sheet.get_all_records()
+        # print(list_of_hashes)
+
+        if (self.sym==self.symbols[0]):
+            fila=3
+        else:
+            fila=4
+
+        for col in range (5):
+            sheet.update_cell(fila, col + 1, self.md[-1][col + 1])
+        #sheet.update_cell(4, i + 1, s2.md[-1][i + 1])
+        return

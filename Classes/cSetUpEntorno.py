@@ -23,6 +23,7 @@ class cEnvironment():
         self.s = requests.Session()
         self.loginSuccess=False
 
+
         self.login()
 
     def login(self):
