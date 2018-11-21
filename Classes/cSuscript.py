@@ -4,6 +4,7 @@ import threading
 import simplejson
 from time import sleep
 from Classes import cSetUpEntorno as cSetup
+from itertools import count #itertools es para contar la cantidad de instancias de una clase
 #--------------------------
 # Imports for google sheets
 import gspread
@@ -12,7 +13,10 @@ from oauth2client.service_account import ServiceAccountCredentials
 #1
 
 class cSuscriptSymbol(cSetup.cEnvironment):
+    _ids=count(0)
     def __init__(self,usr,pswd,account,symbols):
+        self.id=next(self._ids) # se cuenta la cantidad de instancias de una clase para imprimir en gsheets
+
         super().__init__(usr,pswd,account)
         self.symbols = symbols
         self.wsEndpointDemo = "ws://pbcp-remarket.cloud.primary.com.ar/"
@@ -20,8 +24,6 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         self.messages = []
         self.md=[]
         self.mensajes = 0
-        filaGoogleSheets=3
-
 
         #if (self.loginSuccess):
         self.runWS()
@@ -160,12 +162,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
 
-        if (self.sym==self.symbols[0]):
-            fila=3
-        else:
-            fila=4
-
         for col in range (5):
-            sheet.update_cell(fila, col + 1, self.md[-1][col + 1])
-        #sheet.update_cell(4, i + 1, s2.md[-1][i + 1])
+            sheet.update_cell(self.id+3, col + 1, self.md[-1][col + 1])
+
         return
