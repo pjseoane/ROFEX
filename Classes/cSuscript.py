@@ -14,13 +14,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 class cSuscriptSymbol(cSetup.cEnvironment):
     _ids=count(0)
-    def __init__(self,usr,pswd,account,marketID,symbols):
+    def __init__(self,usr,pswd,account,symbols):
         self.id=next(self._ids) # se cuenta la cantidad de instancias de una clase para imprimir en gsheets
 
         super().__init__(usr,pswd,account)
         self.symbols = symbols
         #self.wsEndpointDemo = "ws://pbcp-remarket.cloud.primary.com.ar/"
-        self.marketId_ = marketID
+        #self.marketId_ = marketID
         self.activeWSEndpoint = self.wsEndpointDemo
         self.messages = []
         self.md=[]
@@ -57,6 +57,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
                 self.ws.send(aaa)
 
                 print("Sent Suscription msg", self.sym)
+                
                 print("Receiving...", )
 
                 sleep(1)  # y nada
@@ -151,7 +152,8 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         # use creds to create a client to interact with the Google Drive API
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
-        creds = ServiceAccountCredentials.from_json_keyfile_name('Notebooks\client_secret.json', scope)
+        #creds = ServiceAccountCredentials.from_json_keyfile_name('Notebooks\client_secret.json', scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
         client = gspread.authorize(creds)
 
         # Find a workbook by name and open the first sheet
@@ -162,7 +164,7 @@ class cSuscriptSymbol(cSetup.cEnvironment):
         # Extract and print all of the values
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
-
+        sheet.update_cell(1, 1, "Hello World V3!")
         for col in range (5):
             sheet.update_cell(self.id+3, col + 1, self.md[-1][col + 1])
 

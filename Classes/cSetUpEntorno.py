@@ -19,7 +19,7 @@ class cEnvironment():
         self.entorno = 1
         self.type_ = "smd"
         self.level_ = "1"
-        #self.marketId_ = "ROFX"
+        self.marketId_ = "ROFX"
         self.s = requests.Session()
         self.loginSuccess=False
 
@@ -37,7 +37,7 @@ class cEnvironment():
             self.token = loginResponse.headers['X-Auth-Token']
             self.loginSuccess = True
 
-            #print("login() OK --->", self.token)
+            print("login() OK --->", self.token)
         else:
             print("Request Error.",__name__)
             self.loginSuccess = False
