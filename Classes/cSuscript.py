@@ -14,12 +14,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 class cSuscriptSymbol(cSetup.cEnvironment):
     _ids=count(0)
-    def __init__(self,usr,pswd,account,symbols):
+    def __init__(self,usr,pswd,account,marketID,symbols):
         self.id=next(self._ids) # se cuenta la cantidad de instancias de una clase para imprimir en gsheets
 
         super().__init__(usr,pswd,account)
         self.symbols = symbols
-        self.wsEndpointDemo = "ws://pbcp-remarket.cloud.primary.com.ar/"
+        #self.wsEndpointDemo = "ws://pbcp-remarket.cloud.primary.com.ar/"
+        self.marketId_ = marketID
         self.activeWSEndpoint = self.wsEndpointDemo
         self.messages = []
         self.md=[]
