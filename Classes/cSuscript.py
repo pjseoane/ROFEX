@@ -319,7 +319,7 @@ class cSuscriptSymbol(cSetup.cROFEXreMarketLogin):
         # Extract and print all of the values
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
-        sheet.update_cell(1, 1, "Hello World V3!")
+        sheet.update_cell(1, 1, "Hello World V4!")
         for col in range (5):
             sheet.update_cell(self.id+3, col + 1, self.md[-1][col + 1])
 

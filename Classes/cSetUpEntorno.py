@@ -1,7 +1,24 @@
 import requests
 import simplejson
 
-
+"""
+class cROFEXdemoLogin():
+    def __init__(self, usr, pswd, account):
+        self.usr = "BALANZ"
+        self.pswd = "BALANZ"
+        self.account = "555"
+        self.endpointDemo = "http://demo-api.primary.com.ar/"
+        self.wsEndpointDemo = "ws://demo-api.primary.com.ar/"
+        self.activeEndpoint = self.endpointDemo
+        self.activeWSEndpoint = self.wsEndpointDemo
+        self.historyOHLC_endpoint = "http://h-api.primary.com.ar/MHD/TradesOHLC/{s}/{fi}/{ff}/{hi}/{hf}"
+        self.entorno = 1
+        self.type_ = "smd"
+        self.level_ = "1"
+        self.marketId_ = "ROFEX"
+        self.s = requests.Session()
+        self.loginSuccess=False
+"""
 
 class cROFEXreMarketLogin():
     def __init__(self,usr,pswd,account):
@@ -9,8 +26,6 @@ class cROFEXreMarketLogin():
         self.usr = usr
         self.pswd = pswd
         self.account = account
-        #self.endpointDemo = "http://demo-api.primary.com.ar/"
-        #self.wsEndpointDemo = "ws://demo-api.primary.com.ar/"
         self.endpointDemo ="http://pbcp-remarket.cloud.primary.com.ar/"
         self.wsEndpointDemo ="ws://pbcp-remarket.cloud.primary.com.ar/"
         self.activeEndpoint = self.endpointDemo
