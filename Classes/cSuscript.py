@@ -156,9 +156,13 @@ class cSuscription():
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
         sheet.update_cell(1, 1, "Hello World V3!")
-        for col in range (5):
-            sheet.update_cell(self.id+3, col + 1, self.md[-1][col + 1])
+        #Aca hacer un pop() de md e imprimir len de md a ver cuantos elementos saltea la stack
 
+        lastInStack=self.md.pop()
+        for col in range (5):
+            #sheet.update_cell(self.id+3, col + 1, self.md[-1][col + 1])
+            sheet.update_cell(self.id + 3, col + 1, lastInStack[col + 1])
+            sheet.update_cell(self.id + 3, 7, len(self.md))
         return
 
 
