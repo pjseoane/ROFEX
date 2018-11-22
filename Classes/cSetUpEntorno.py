@@ -1,9 +1,9 @@
 import requests
 import simplejson
-#2
 
 
-class cEnvironment():
+
+class cROFEXreMarketLogin():
     def __init__(self,usr,pswd,account):
 
         self.usr = usr
@@ -19,7 +19,7 @@ class cEnvironment():
         self.entorno = 1
         self.type_ = "smd"
         self.level_ = "1"
-        self.marketId_ = "ROFX"
+        self.marketId_ = "ROFEX"
         self.s = requests.Session()
         self.loginSuccess=False
 
