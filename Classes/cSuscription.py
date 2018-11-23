@@ -3,14 +3,16 @@ import websocket
 import threading
 import simplejson
 from time import sleep
-from Classes import cSetUpEntorno as cSetup
+#from Classes import cSetUpEntorno as cSetup
 from itertools import count #itertools es para contar la cantidad de instancias de una clase
 #--------------------------
 # Imports for google sheets
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-#1
+#-----
+
+
 class cSuscription():
     _ids = count(0)
 
@@ -155,7 +157,7 @@ class cSuscription():
         # Extract and print all of the values
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
-        sheet.update_cell(1, 1, "Hello World V3!")
+        sheet.update_cell(1, 1, "Hello World V4.1!")
         #Aca hacer un pop() de md e imprimir len de md a ver cuantos elementos saltea la stack
 
         lastInStack=self.md.pop()
