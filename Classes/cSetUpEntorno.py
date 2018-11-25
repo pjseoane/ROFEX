@@ -15,7 +15,7 @@ class cROFEXdemoLogin():
         self.entorno = 1
         self.type_ = "smd"
         self.level_ = "1"
-        self.marketId_ = "ROFEX"
+        self.marketId_ = "ROFX"
         self.s = requests.Session()
         self.loginSuccess=False
 """
