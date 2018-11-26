@@ -27,6 +27,28 @@ class cROFEXSetUp():
         self.marketId_ = "ROFX"
         self.s = requests.Session()
         loginSuccess = False
+        #----------------------------------------------------------------------
+        #set up para google sheets
+        # use creds to create a client to interact with the Google Drive API
+        scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+        # creds = ServiceAccountCredentials.from_json_keyfile_name('Notebooks\client_rofex.json', scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_name('Classes/client_rofex.json', scope)
+        client = gspread.authorize(creds)
+
+        # Find a workbook by name and open the first sheet
+        # Make sure you use the right name here.
+
+        self.sheet = client.open("ROFEX-API").sheet1
+
+        # Extract and print all of the values
+        # list_of_hashes = sheet.get_all_records()
+        # print(list_of_hashes)
+        self.sheet.update_cell(1, 1, "Hello World V6.1!")
+
+
+
+        #----------------------------------------------------------------------
+
         self.login()
 
 
@@ -277,26 +299,26 @@ class cROFEXSuscription(cROFEXSetUp):
         return
     def printToGoogleSheets(self):
         # use creds to create a client to interact with the Google Drive API
-        scope = ['https://spreadsheets.google.com/feeds',
-                 'https://www.googleapis.com/auth/drive']
+        #scope = ['https://spreadsheets.google.com/feeds',
+         #        'https://www.googleapis.com/auth/drive']
         #creds = ServiceAccountCredentials.from_json_keyfile_name('Notebooks\client_rofex.json', scope)
-        creds = ServiceAccountCredentials.from_json_keyfile_name('Classes/client_rofex.json', scope)
-        client = gspread.authorize(creds)
+        #creds = ServiceAccountCredentials.from_json_keyfile_name('Classes/client_rofex.json', scope)
+        #client = gspread.authorize(creds)
 
         # Find a workbook by name and open the first sheet
         # Make sure you use the right name here.
 
-        sheet = client.open("ROFEX-API").sheet1
+        #sheet = client.open("ROFEX-API").sheet1
 
         # Extract and print all of the values
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
-        sheet.update_cell(1, 1, "Hello World V4.1!")
+        #sheet.update_cell(1, 1, "Hello World V4.1!")
         #Aca hacer un pop() de md e imprimir len de md a ver cuantos elementos saltea la stack
 
         lastInStack=self.md.pop()
         for col in range (5):
-            #sheet.update_cell(self.id+3, col + 1, self.md[-1][col + 1])
-            sheet.update_cell(self.id + 3, col + 1, lastInStack[col + 1])
-            sheet.update_cell(self.id + 3, 7, len(self.md))
+            self.sheet.update_cell(self.id + 3, col + 1, self.md[-1][col + 1])
+            self.sheet.update_cell(self.id + 3, col + 1, lastInStack[col + 1])
+            self.sheet.update_cell(self.id + 3, 7, len(self.md))
         return
