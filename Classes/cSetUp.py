@@ -44,9 +44,6 @@ class cROFEXSetUp():
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
         self.sheet.update_cell(1, 1, "Hello World V6.1!")
-
-
-
         #----------------------------------------------------------------------
 
         self.login()
@@ -220,6 +217,7 @@ class cROFEXSuscription(cROFEXSetUp):
 
     def on_message(self, message):
         self.numMessages += 1
+
         try:
             # Valido Mensaje entrante
             self.msg = simplejson.loads(message)
