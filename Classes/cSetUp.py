@@ -32,7 +32,7 @@ class cROFEXSetUp():
         # use creds to create a client to interact with the Google Drive API
         scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
         # creds = ServiceAccountCredentials.from_json_keyfile_name('Notebooks\client_rofex.json', scope)
-        creds = ServiceAccountCredentials.from_json_keyfile_name('Classes/client_rofex.json', scope)
+        creds = ServiceAccountCredentials.from_json_keyfile_name('C:/Users/pauli/Documents/Python Projects/ROFEX/Classes/client_rofex.json', scope)
         client = gspread.authorize(creds)
 
         # Find a workbook by name and open the first sheet
@@ -43,7 +43,7 @@ class cROFEXSetUp():
         # Extract and print all of the values
         # list_of_hashes = sheet.get_all_records()
         # print(list_of_hashes)
-        self.sheet.update_cell(1, 1, "Hello World V6.1!")
+        self.sheet.update_cell(1, 1, "Hello World V6.2!")
         #----------------------------------------------------------------------
 
         self.login()
@@ -292,8 +292,9 @@ class cROFEXSuscription(cROFEXSetUp):
 
     def goRobot(self):
 
-        print("En goRobot***->",self.numMessages,"--",self.sym,"-->",self.bid,"/",self.offer,"    ",self.bidSize,"/",self.offerSize)
-        self.printToGoogleSheets()
+        #print("En goRobot***->",self.numMessages,"--",self.sym,"-->",self.bid,"/",self.offer,"    ",self.bidSize,"/",self.offerSize)
+        print ("En goRobot md ****->", self.md[-1])
+        #self.printToGoogleSheets()
         return
     def printToGoogleSheets(self):
         # use creds to create a client to interact with the Google Drive API
@@ -314,7 +315,8 @@ class cROFEXSuscription(cROFEXSetUp):
         #sheet.update_cell(1, 1, "Hello World V4.1!")
         #Aca hacer un pop() de md e imprimir len de md a ver cuantos elementos saltea la stack
 
-        lastInStack=self.md.pop()
+        lastInStack=self.md[-1]
+        #lastInStack=self.md.pop()
         for col in range (5):
             self.sheet.update_cell(self.id + 3, col + 1, self.md[-1][col + 1])
             self.sheet.update_cell(self.id + 3, col + 1, lastInStack[col + 1])
